@@ -1,0 +1,155 @@
+<?php
+/**
+ * @var $imagePlaceHolder ;
+ * @var $pet ;
+ * @var $image ;
+ * @var $user ;
+ * @var $petTypeIcon
+ * @var $petViewIcons
+ */
+
+?>
+<!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script> -->
+<div class="overlay" id="zoom-overlay"></div>
+<div class="background-header" id="pictures-container">
+    <div class="foto-efecto-container">
+        <img id="pet-picture" class="foto-efecto" id="small-image" width="350" height="350" src="<?= $image ?>" alt="Pet picture">
+    </div>
+    <div class="picture-container">
+        <img class="big-picture" id="large-image" src="<?= $image ?>" alt="Pet Zoomed picture">
+    </div>
+    <div class="name-container">
+        <img class="pet-type-icon" src="<?= $petTypeIcon ?>" alt=""><div class="pet-icon-connected pulse"></div><span class="pet-name"><?= $pet['name'] ?></span><div class="pet-icon-connected pulse"></div>
+    </div>
+</div>
+
+<div class="info-section info-sections" id="info-section">
+    <div class="header-section-container">
+        <img id="info-section-icon-dark" class="section-icon dark" src="<?= $petViewIcons['dark']['info-section'] ?>"
+             alt="Icon section">
+        <img id="info-section-icon-white" class="section-icon white" src="<?= $petViewIcons['white']['info-section'] ?>"
+             alt="Icon section">
+        <div class="title-section">Sobre mí ...</div>
+    </div>
+    <div class="bottom-section">
+        Me llamo
+        <strong><?= $pet['name'] ?></strong><?= !empty($pet['age']) ? ", Tengo <strong> " . $pet['age'] . " </strong> año" . ($pet['age'] > 1 ? 's' : '') : '' ?><?= !empty($pet['pet_breed']) ? ', Soy de raza <strong>' . $pet['pet_breed'] . '</strong>' : '' ?><?= !empty($pet['weight']) ? ', peso <strong>' . $pet['weight'] . ' kgs</strong>' : '' ?>. Si estoy perdido(a) toca el ícono
+        de <strong><?= !$user['is_phone_whatsapp'] ? 'teléfono' : 'whatsapp' ?> </strong> abajo a la derecha para contactar a mi dueño(a).
+    </div>
+</div>
+
+<div class="info-section info-sections" id="reward-section">
+    <div class="header-section-container">
+        <img id="reward-section-icon-dark" class="section-icon dark"
+             src="<?= $petViewIcons['dark']['reward-section'] ?>" alt="Icon section">
+        <img id="reward-section-icon-white" class="section-icon white"
+             src="<?= $petViewIcons['white']['reward-section'] ?>" alt="Icon section">
+        <div class="title-section">Recompensa</div>
+    </div>
+    <div class="bottom-section">
+        <?php if (!empty($pet['reward'])): ?>
+            Si estoy perdido
+            y me regresas con mi familia
+            la recompensa es de
+            <strong class="reward">$ <?= $pet['reward'] ?></strong>
+        <?php else: ?>
+            <strong class="reward">No hay información disponible en este momento</strong>
+        <?php endif; ?>
+    </div>
+</div>
+
+<div class="info-section info-sections" id="health-section">
+    <div class="header-section-container">
+        <img id="health-section-icon-dark" class="section-icon dark"
+             src="<?= $petViewIcons['dark']['health-section'] ?>" alt="Icon section">
+        <img id="health-section-icon-white" class="section-icon white"
+             src="<?= $petViewIcons['white']['health-section'] ?>" alt="Icon section">
+        <div class="title-section">Historia Clínica</div>
+    </div>
+    <div class="bottom-section">
+        <?= !empty($pet['medicine']) ? $pet['medicine'] : '<strong>Medicinas:</strong> No hay Información para mostrar.,' ?>
+        <?= !empty($pet['alergy']) ? $pet['alergy'] : '<strong>Alergias:</strong> No hay Información para mostrar.' ?>
+    </div>
+</div>
+
+<div class="info-section info-sections" id="food-section">
+    <div class="header-section-container">
+        <img id="food-section-icon-dark" class="section-icon dark" src="<?= $petViewIcons['dark']['food-section'] ?>"
+             alt="Icon section">
+        <img id="food-section-icon-white" class="section-icon white" src="<?= $petViewIcons['white']['food-section'] ?>"
+             alt="Icon section">
+        <div class="title-section">Alimentación</div>
+    </div>
+    <div class="bottom-section">
+        <?= !empty($pet['diet']) ? $pet['diet'] : '<strong>Dieta:</strong> No hay Información para mostrar.' ?>    </div>
+</div>
+<div class="info-section info-sections" id="map-section">
+    <div class="header-section-container">
+        <img id="map-section-icon-dark" class="section-icon dark" src="<?= $petViewIcons['dark']['map-section'] ?>"
+             alt="Icon section">
+        <img id="map-section-icon-white" class="section-icon white" src="<?= $petViewIcons['white']['map-section'] ?>"
+             alt="Icon section">
+        <div class="title-section">Ubicación Actual</div>
+    </div>
+    <div class="bottom-section">
+        <div id="map"></div>
+    </div>
+
+</div>
+<td colspan="2">
+    <hr>
+</td>
+
+<div class="bottom-menu">
+    <div class="controls">
+        <div class="control-button-container main-info" id="info-section-control">
+            <img id="info-section-control-icon-dark" class="control-icons dark" data-target="info-section"
+                 src="<?= $petViewIcons['dark']['info-section'] ?>" alt="">
+            <img id="info-section-control-icon-white" class="control-icons white" data-target="info-section"
+                 src="<?= $petViewIcons['white']['info-section'] ?>" alt="">
+        </div>
+        <div class="control-button-container reward-container" id="reward-section-control">
+            <img id="reward-section-control-icon-dark" class="control-icons dark" data-target="reward-section"
+                 src="<?= $petViewIcons['dark']['reward-section'] ?>" alt="">
+            <img id="reward-section-control-icon-white" class="control-icons white" data-target="reward-section"
+                 src="<?= $petViewIcons['white']['reward-section'] ?>" alt="">
+        </div>
+        <div class="control-button-container health-container" id="health-section-control">
+            <img id="health-section-control-icon-dark" class="control-icons dark" data-target="health-section"
+                 src="<?= $petViewIcons['dark']['health-section'] ?>" alt="">
+            <img id="health-section-control-icon-white" class="control-icons white" data-target="health-section"
+                 src="<?= $petViewIcons['white']['health-section'] ?>" alt="">
+        </div>
+        <div class="control-button-container food-container" id="food-section-control">
+            <img id="food-section-control-icon-dark" class="control-icons dark" data-target="food-section"
+                 src="<?= $petViewIcons['dark']['food-section'] ?>" alt="">
+            <img id="food-section-control-icon-white" class="control-icons white" data-target="food-section"
+                 src="<?= $petViewIcons['white']['food-section'] ?>" alt="">
+        </div>
+        <div class="control-button-container map-container" id="map-section-control">
+            <img id="map-section-control-icon-dark" class="control-icons dark" data-target="map-section"
+                 src="<?= $petViewIcons['dark']['map-section'] ?>" alt="">
+            <img id="map-section-control-icon-white" class="control-icons white" data-target="map-section"
+                 src="<?= $petViewIcons['white']['map-section'] ?>" alt="">
+        </div>
+        <div class="control-button-container whatsapp-container">
+            <?php
+            if ($user['is_phone_whatsapp']): ?>
+                <a id="whatsapp-link"
+                   href="https://api.whatsapp.com/send?phone=57<?= $user['phone'] ?>&text=Hola desde Rastreo Pet, He encontrado tu mascota"
+                   target="_blank"> <img class="control-icons pulse" id="phone-section-control-icon-dark"
+                                         src="<?= $petViewIcons['dark']['whatsapp-section'] ?>"
+                                         alt=""></a>
+            <?php else: ?>
+
+                <a href="tel:+57<?= $user['phone'] ?>"><img class="control-icons pulse"
+                                                            id="phone-section-control-icon-dark"
+                                                            src="<?= $petViewIcons['dark']['phone-section'] ?>" alt=""></a>
+            <?php endif; ?>
+        </div>
+        <input id="pet_id" type="hidden" value="<?= $pet['entity_id'] ?>">
+        <input id="locator" type="hidden" value="<?= $_GET['qrId'] ?>">
+        <input id="pet_name" type="hidden" value="<?= $pet['name'] ?>">
+        <input id="email" type="hidden" value="<?= $user['username'] ?>">
+    </div>
+</div>

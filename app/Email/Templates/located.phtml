@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Se ha encontrado a tu peludito(a)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #5E558E;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Alguien ha escaneado la placa de tu peludito(a) {{name}} !</h1>
+    </div>
+    <div class="desc">
+        <h4>Fecha y Hora: {{hour}}</h4>
+        <h4>Presiona en el mapa para conocer su ubicación</h4>
+    </div>
+    <div class="map-image">
+        <a href="https://www.google.com/maps?q={{coordinates}}"><img src="{{imagePlaceholder}}" width="500px" height="500px" alt="Localización de Mascota"></a>
+    </div>
+    <p>La ubicación reportada en este correo corresponde al lugar en que se escaneó la placa de tu mascota en la fecha y hora indicados</p>
+</div>
+</body>
+</html>

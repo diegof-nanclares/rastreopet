@@ -1,0 +1,79 @@
+<?php
+/**
+ * @var $pets
+ * @var $logo
+ * @var $petsIcon
+ */
+?>
+<div class="menu-container">
+    <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <img class="main-logo"  src="<?= $logo ?>" alt="Rastreo Pet">
+    <div class="sidebar">
+        <div class="menu-items">
+            <div class="greeting-section">
+                <h3><i data-feather="circle" class="icon-font-10 feather-icon icon-green pulse-icon"></i><?= $_SESSION['name']  ?></h3>
+            </div>
+            <a href="/"><i data-feather="users" class="icon-font-15 feather-icon"></i><span>usuarios</span></a>
+            <a href="/qr"><i data-feather="map-pin" class="icon-font-15 feather-icon"></i><span>Localizadores</span></a>
+            <a href="/pet/petsadmin"><i data-feather="list" class="icon-font-15 feather-icon"></i><span>Mascotas</span></a>
+            <a href="/closesession"><i data-feather="log-out" class="icon-font-15 feather-icon"></i><span>Cerrar Sesión</span></a>
+        </div>
+    </div>
+</div>
+
+<div class="main-content">
+    <table class="action-table-buttons">
+        <tr>
+            <td>
+                <a href="/usercreate"><button class="primary-action-table-button">Registrar Mascota</button></a>
+            </td>
+        </tr>
+    </table>
+    <h4 class="section-page-title">Mascotas Registradas <img class="section-icon" src="<?= $petsIcon ?> " alt="Mis mascotas"></h4>
+    <div class="table-container">
+        <table id="datatablerows" class="display nowrap" >
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Raza</th>
+                <th>Peso</th>
+                <th>Edad/ Años</th>
+                <th>Recompensa</th>
+                <th>Ver</th>
+                <th>Vista Previa</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach($pets as $pet): ?>
+                <tr>
+                    <td><?= $pet['entity_id'] ?></td>
+                    <td><?= $pet['name'] ?></td>
+                    <td><?= $pet['pet_type'] ?></td>
+                    <td><?= $pet['pet_breed'] ?></td>
+                    <td><?= $pet['weight'] ? $pet['weight']  . ' kg' : '' ?></td>
+                    <td><?= $pet['age'] ?></td>
+                    <td><?= is_numeric($pet['reward']) ?  \Models\Utils\Util::formatNumberCurrency($pet['reward']) : 'Sin asignar' ?></td>
+                    <td><a href="/pet/detail/?id=<?=  $pet['entity_id'];?>"><i data-feather="eye" class="icon-font-15 feather-icon"></i></a></td>
+                    <td><a href="/pet/preview/?qrId=<?=  $pet['qr_identifier'];?>" target="_blank"><i data-feather="play" class="icon-font-15 feather-icon"></i></a></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#datatablerows').DataTable();
+    });
+</script>
+<?php if(isset($_GET['msg'])): ?>
+    <script>
+        showMessage('Atención', '<?= $_GET['msg']; ?>', 'success');
+    </script>
+<?php endif; ?>

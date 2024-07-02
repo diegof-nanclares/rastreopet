@@ -1,0 +1,101 @@
+.close-session {
+    margin-left: 66%;
+    margin-top: 95px;
+    list-style: none;
+}
+
+.greeting-section {
+    width: 172px;
+    font-family: 'Jost*';
+}
+
+.name-section {
+    font-family: 'Jost*';
+    font-size: 20px;
+    margin: 18px 0 18px 0;
+}
+
+.form-container-main {
+    margin: 70px 0 80px 70px;
+    padding-bottom: 40px;
+    font-family: 'Jost*';
+}
+
+#datatablerows_wrapper {
+    margin: 70px 0 0 80px;
+}
+
+.datatable-inner > #datatablerows_wrapper {
+    margin: 0;
+}
+
+.datatable-inner > #datatablerows_wrapper > #datatablerows {
+    max-width: 1130px;
+}
+
+.table-container {
+    padding-bottom: 45px;
+}
+
+#datatablerows_filter input[type="search"]  {
+     height: 40px;
+     width: 240px;
+     margin-left: 6px;
+}
+
+.action-table-buttons {
+    margin:73px 0 0 80px;
+}
+
+.primary-action-table-button {
+    background-color: #5E558E;
+    color: #ffffff;
+    font-family: 'Jost*', sans-serif;
+    font-weight: bolder;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#datatablerows {
+    width: 1500px;
+    font-family: 'Jost*', sans-serif;
+}
+
+.section-page-title{
+    font-family: 'Jost*', sans-serif;
+    font-size: 22px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75px;
+    line-height: 80px;
+    background-color: #f2f2f2;
+    z-index: 1;
+    padding-left: 20%;
+    margin-top: 0;
+    font-weight: bold;
+}
+
+.section-icon {
+    width: 42px;
+    margin-bottom: -10px;
+}
+
+.section-icon-user {
+    width: 38px;
+    margin-bottom: -10px;
+}
+
+
+#datatablerows_filter {
+
+}
+
+
+/** Buttons **/
+.btn.btn-primary {
+    background-color: #5E558E;
+    color: #ffffff;
+}

@@ -1,0 +1,136 @@
+<?php
+/**
+ * @var $imagePlaceHolder;
+ * @var $userId;
+ * @var  $qrId;
+ * @var $infoSectionIcon
+ * @var $rewardIcon
+ */
+?>
+<?php if(!$qrId): ?>
+<a href="#" onclick="history.back()"><button>Atrás</button></a>
+</center>
+<center><a href="/closesession">Cerrar Sesión</a></center>
+<?php endif; ?>
+
+<div class="background-header" id="pictures-container">
+    <div class="register-pet-main-title">
+        <?= $qrId ? 'Ahora cuentanos un  poco sobre tu peludito(a)' : 'Registrar nueva mascota' ?>
+    </div>
+  <tr>
+        <td colspan="2">
+            <div class="img-preview-container">
+                <img  id="imagePreview" class="img-register-pet" src="<?= $imagePlaceHolder ?>" alt="Pet picture">
+            </div>
+        </td>
+  </tr>
+</div>
+<form action="/savepet/create" method="post" enctype="multipart/form-data">
+<input type="file" id="fileInput" accept="image/*" name="img">
+<div id="imagePreview"></div>
+<div class="register-pet-sections-container">
+<div class="info-section info-sections active <?= $qrId ? 'register' : '' ?>" id="info-section">
+    <div class="header-section-container">
+        <img id="info-section-icon-dark"  src="<?= $infoSectionIcon; ?>" class="section-icon dark" alt="Icon section">
+        <div class="title-section">Datos Básicos</div>
+    </div>
+    <div class="bottom-section">
+            <table>
+                <h2><?= $qrId ? '' : 'Registrar nuevo usuario'?></h2>
+                <tr>
+                    <td><label class="view-form-label" for="">Nombre: </label></td>
+                    <td><input class="view-textbox-form" required name="name" type="text" placeholder="Nombre de tu peludito(a)"></td>
+                </tr>
+                <tr>
+                    <td><label class="view-form-label" for="">tipo: </label></td>
+                    <td>
+                        <select class="view-textbox-form select" required name="pet_type" >
+                            <option value="">-- Tipo de mascota --</option>
+                            <option value="Perro">Perrito(a)</option>
+                            <option value="Gato">Gatito(a)</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class="view-form-label" for="pet_breed">Raza: </label></td>
+                    <td><input  class="view-textbox-form"  type="text" name="pet_breed"  placeholder="Raza de tu peludito(a)"></td>
+                </tr>
+                <tr>
+                    <td><label class="view-form-label" for="">Peso: </label></td>
+                    <td><input class="view-textbox-form"  type="number" name="weight" placeholder="Peso en Kg"></td>
+                </tr>
+                <tr>
+                    <td><label class="view-form-label" for="">Edad: </label></td>
+                    <td><input class="view-textbox-form"  type="number" name="age" placeholder="Edad en años"></td>
+                </tr>
+            </table>
+
+    </div>
+</div>
+<div class="info-section info-sections active <?= $qrId ? 'register' : '' ?>" id="info-section">
+    <div class="header-section-container">
+        <img id="info-section-icon-dark"  src="<?= $rewardIcon; ?>" class="section-icon dark" alt="Icon section">
+        <div class="title-section">Recompensa</div>
+    </div>
+    <div class="bottom-section">
+        <table>
+            <tr>
+                <td><label class="view-form-label" for="">Recompensa: </label></td>
+                <td><input class="view-textbox-form"  type="number" name="reward"  placeholder="Si es encontrado"></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+<div class="info-section info-sections active <?= $qrId ? 'register' : '' ?>" id="info-section">
+    <div class="header-section-container">
+        <img id="info-section-icon-dark"  src="<?= $rewardIcon; ?>" class="section-icon dark" alt="Icon section">
+        <div class="title-section">Historia Clínica</div>
+    </div>
+    <div class="bottom-section">
+        <table>
+            <tr>
+                <td><label class="view-form-label"  for="">Medicinas: </label></td>
+                <td><textarea class="view-textarea-form" name="medicine" id="" cols="30" rows="4" placeholder="Medicamentos y cada cuanto se le deben suministrar (Opcional)"></textarea></td>
+            </tr>
+            <tr>
+                <td><label class="view-form-label"  for="">Alergias: </label></td>
+                <td><textarea class="view-textarea-form" name="alergy" id="" cols="30" rows="3" placeholder="Alergias que tenga tu mascota (opcional)"></textarea></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+<div class="info-section info-sections active <?= $qrId ? 'register' : '' ?>" id="info-section">
+    <div class="header-section-container">
+        <img id="info-section-icon-dark"  src="<?= $rewardIcon; ?>" class="section-icon dark" alt="Icon section">
+        <div class="title-section">Alimentación: </div>
+    </div>
+    <div class="bottom-section">
+        <table>
+            <tr>
+                <td><label class="view-form-label"  for="">Dietas: </label></td>
+                <td><textarea class="view-textarea-form" name="diet" id="" cols="30" rows="4" placeholder="Tipo de alimentos y dietas (Opcional)"></textarea></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="info-section info-sections action <?= $qrId ? 'register' : '' ?>" id="info-section">
+    <div class="bottom-section">
+        <table>
+            <tr>
+                <input type="hidden" name="qrlocator" value="<?= $qrId ?>">
+                <td colspan="2"><button class="primary-action" type="submit"><?= $qrId ? "Activar Localizador!" : 'Guardar Mascota' ?></button></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<tr>
+    <input type="hidden" name="owner_id" value="<?= $userId ?>">
+    <input type="hidden" name="qr_id" value="<?= $qrId ?>">
+</tr>
+</div>
+</form>
