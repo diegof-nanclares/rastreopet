@@ -1,0 +1,92 @@
+<?php
+/**
+ * @var $users
+ * @var $logo
+ * @var $usersIcon
+ */
+?>
+<div class="menu-container">
+    <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <img class="main-logo"  src="<?= $logo ?>" alt="Rastreo Pet">
+    <div class="sidebar">
+        <div class="menu-items">
+            <div class="greeting-section">
+                <h3><i data-feather="circle" class="icon-font-10 feather-icon icon-green pulse-icon"></i><?= $_SESSION['name']  ?></h3>
+            </div>
+            <a href="/"><i data-feather="users" class="icon-font-15 feather-icon"></i><span>usuarios</span></a>
+            <a href="/qr"><i data-feather="map-pin" class="icon-font-15 feather-icon"></i><span>Localizadores</span></a>
+            <a href="/pet/petsadmin"><i data-feather="list" class="icon-font-15 feather-icon"></i><span>Mascotas</span></a>
+            <a href="/closesession"><i data-feather="log-out" class="icon-font-15 feather-icon"></i><span>Cerrar Sesión</span></a>
+        </div>
+    </div>
+</div>
+
+<div class="main-content">
+    <table class="action-table-buttons">
+        <tr>
+            <td>
+                <a href="/usercreate"><button class="primary-action-table-button">Crear Nuevo</button></a>
+            </td>
+        </tr>
+    </table>
+       <h4 class="section-page-title">Usuarios Registrados <i data-feather="users" class="icon-font-25 feather-icon"></i></h4>
+        <div class="table-container">
+            <table id="datatablerows" class="display nowrap" >
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Celular / Teléfono</th>
+                    <th>Número con whatsapp</th>
+                    <th>Dirección</th>
+                    <th>Rol</th>
+                    <th>E-mail</th>
+                    <th>Ver</th>
+                    <th>Llamar / Chatear </th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach($users as $user):
+                    $whatsApp = $user['is_phone_whatsapp'] == 1 ? 1 : 0;
+                    $comUrl = $whatsApp ? 'https://wa.me/' .$user['phone'] : 'tel:+57' . $user['phone'];
+                    $comLabel = $whatsApp ? '<i data-feather="message-square" class="icon-font-15 feather-icon"></i>' : '<i data-feather="phone-call" class="icon-font-15 feather-icon"></i>';
+                    ?>
+                    <tr>
+                        <td><?= $user['entity_id'] ?></td>
+                        <td><?= $user['name'] ?></td>
+                        <td><?= $user['lastname'] ?></td>
+                        <td><?= $user['phone'] ?></td>
+                        <td>
+                            <input type="checkbox" disabled <?= $whatsApp ? 'checked' : ''  ?>>
+                        </td>
+                        <td><?= $user['address'] ?></td>
+                        <td><?= $user['user_role'] === 1 ? 'Administrador' : 'Usuario Estándar' ?></td>
+                        <td><?= $user['username'] ?></td>
+                        <td><a href="/userdetail/index/?id=<?=  $user['entity_id'];?>"><i data-feather="eye" class="icon-font-15 feather-icon"></i></a></td>
+                        <td><a <?= $whatsApp ? 'target="_blank"' : '' ?> href="<?= $comUrl ?>"><?= $comLabel ?></a></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('#datatablerows').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'exddcel', 'pdf', 'print'
+            ]
+        } );
+    } );
+</script>
+<?php if(isset($_GET['msg'])): ?>
+<script>
+showMessage('Atención', '<?= $_GET['msg']; ?>', 'success');
+</script>
+<?php endif; ?>

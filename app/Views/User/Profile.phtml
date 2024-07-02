@@ -1,0 +1,87 @@
+<?php
+
+/**
+ * @var $pets
+ * @var $logo
+ * @var $loggedUserInfo
+ */
+?>
+<hr>
+<div class="menu-container">
+    <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <img class="main-logo"  src="<?= $logo ?>" alt="Rastreo Pet">
+    <div class="sidebar">
+        <div class="menu-items">
+            <div class="greeting-section">
+                <h3 class="name-section"><i data-feather="circle" class="icon-font-10 feather-icon icon-green pulse-icon"></i><?= $_SESSION['name']  ?></h3>
+            </div>
+            <a href="/profile"><i data-feather="user" class="icon-font-15 feather-icon"></i><span>Mi Perfil</span></a>
+            <a href="/"><i data-feather="list" class="icon-font-15 feather-icon"></i><span>Mis Mascotas</span></a>
+            <a href="/closesession"><i data-feather="log-out" class="icon-font-15 feather-icon"></i><span>Cerrar Sesión</span></a>
+        </div>
+    </div>
+</div>
+<div class="main-content">
+    <h4 class="section-page-title">Mi Perfil <i data-feather="user" class="icon-font-25 feather-icon icon-line-top-4"></i></h4>
+<div class="form-container-main">
+    <div class="container">
+        <h3 class="info-separator">Información Básica</h3>
+        <form>
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" value="<?= $loggedUserInfo['name'] ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="nombre">Apellido:</label>
+                <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre"  value="<?= $loggedUserInfo['lastname'] ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="nombre">Teléfono/Ceular:</label>
+                <input type="number" class="form-control" id="nombre" placeholder="Ingrese su nombre"  value="<?= $loggedUserInfo['phone'] ?>" required>
+            </div>
+            <div class="form-group">
+                <label>Tu móvil tiene WhatsApp:</label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="whatsapp"  <?php if($loggedUserInfo['is_phone_whatsapp']): echo 'checked'; else: echo ''; endif; ?> id="whatsapp-si" value="si">
+                    <label class="form-check-label" for="whatsapp-si">Sí</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="whatsapp"  <?php if(!$loggedUserInfo['is_phone_whatsapp']): echo 'checked'; else: echo ''; endif; ?> id="whatsapp-no" value="no">
+                    <label class="form-check-label" for="whatsapp-no">No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Dirección:</label>
+                <input type="text" class="form-control" id="address"  placeholder="Ingresa tu dirección (Opcional)"  value="<?= $loggedUserInfo['address'] ?>"  required>
+            </div>
+            <h3 class="info-separator">Información de inicio de sesión</h3>
+            <hr>
+            <div class="form-group">
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" class="form-control" id="email" value="<?= $loggedUserInfo['username'] ?>"  placeholder="Ingrese su correo electrónico" required>
+            </div>
+            <div class="form-group">
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" class="form-control" id="contrasena" placeholder="Ingrese nueva contraseña">
+            </div>
+            <div class="form-group">
+                <label for="confirmar-contrasena">Confirmar Contraseña:</label>
+                <input type="password" class="form-control" id="confirmar-contrasena" placeholder="Confirme su contraseña">
+            </div>
+            <button type="submit" class="btn btn-primary">Actualizar información</button>
+        </form>
+    </div>
+</div>
+</div>
+<script>
+    var table = new DataTable('#datatablerows');
+</script>
+<?php if(isset($_GET['msg'])): ?>
+    <script>
+        showMessage('Atención', '<?= $_GET['msg']; ?>', 'success');
+    </script>
+<?php endif; ?>

@@ -1,0 +1,117 @@
+<?php
+/**
+ * @var $user
+ * @var $petsbyUser
+ * @var $logo
+ * @var $loggedUserInfo
+ */
+?>
+<div class="menu-container">
+    <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <img class="main-logo"  src="<?= $logo ?>" alt="Rastreo Pet">
+    <div class="sidebar">
+        <div class="menu-items">
+            <div class="greeting-section">
+                <h3 class="name-section"><i data-feather="circle" class="icon-font-10 feather-icon icon-green pulse-icon"></i><?= $_SESSION['name']  ?></h3>
+            </div>
+            <a href="/profile"><i data-feather="user" class="icon-font-15 feather-icon"></i><span>Mi Perfil</span></a>
+            <a href="/"><i data-feather="list" class="icon-font-15 feather-icon"></i><span>Mis Mascotas</span></a>
+            <a href="/closesession"><i data-feather="log-out" class="icon-font-15 feather-icon"></i><span>Cerrar Sesión</span></a>
+        </div>
+    </div>
+    <div class="main-content">
+        <h4 class="section-page-title">Modificar Usuario <i data-feather="user" class="icon-font-25 feather-icon icon-line-top-4"></i></h4>
+        <div class="form-container-main">
+            <div class="container">
+                <h3 class="info-separator">Información Básica</h3>
+                <form action="/saveuser/edit/?>" method="post">
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" class="form-control" id="nombre" name="name" placeholder="Ingrese su nombre" value="<?= $user['name'] ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Apellido:</label>
+                        <input type="text" name="lastname" class="form-control" id="nombre" placeholder="Ingrese su nombre"  value="<?= $user['lastname'] ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Teléfono/Ceular:</label>
+                        <input type="number"  name="cellphone" class="form-control" id="nombre" placeholder="Ingrese su nombre"  value="<?= $user['phone'] ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tu móvil tiene WhatsApp:</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="is_phone_whatsapp" <?php if($user['is_phone_whatsapp']): echo 'checked'; else: echo ''; endif; ?> id="whatsapp-si" value="1">
+                            <label class="form-check-label" for="whatsapp-si">Sí</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="is_phone_whatsapp" <?php if(!$user['is_phone_whatsapp']): echo 'checked'; else: echo ''; endif; ?> id="whatsapp-no" value="0">
+                            <label class="form-check-label" for="whatsapp-no">No</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Dirección:</label>
+                        <input type="text" class="form-control" name="address" id="address"  placeholder="Ingresa tu dirección (Opcional)"  value="<?= $loggedUserInfo['address'] ?>"  required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Rol:</label>
+                        <select name="user_role" class="form-control select" required id="user_role">
+                            <option value=""> -- Selecciona una opción --</option>
+                            <option value="1" <?= $user['user_role'] === 1 ? 'selected' : '' ?>>Administrador del sistema</option>
+                            <option value="2" <?= $user['user_role'] === 2 ? 'selected' : '' ?>>Usuario estándar</option>
+                        </select>                    </div>
+                    <h3 class="info-separator">Información de inicio de sesión</h3>
+                    <hr>
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico:</label>
+                        <input type="email" class="form-control" name="email" id="email" value="<?= $user['username'] ?>"  placeholder="Ingrese su correo electrónico" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contrasena">Contraseña:</label>
+                        <input type="password" class="form-control" name="password"  id="contrasena" placeholder="Ingrese nueva contraseña">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmar-contrasena">Confirmar Contraseña:</label>
+                        <input type="password" class="form-control" name="password" id="confirmar-contrasena" placeholder="Confirme su contraseña">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Actualizar información</button>
+                </form>
+                <h3  class="info-separator">Mascotas Asociadas <a href="/pet/index/?userid=<?= $user['entity_id'] ?>">
+                        <a6>Agregar</a6>
+                    </a></h3>
+                <div class="datatable-inner">
+                <table id="datatablerows">
+                    <thead>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+                    <th>Raza</th>
+                    <th>Rastreador</th>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($petsbyUser as $pet): ?>
+                        <tr>
+                            <td><?= $pet['entity_id']; ?></td>
+                            <td><?= $pet['name']; ?></td>
+                            <td><?= $pet['pet_type']; ?></td>
+                            <td><?= $pet['pet_breed']; ?></td>
+                            <td><?= 'identifier here' ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var table = new DataTable('#datatablerows');
+    </script>
+    <?php if (isset($_GET['msg'])): ?>
+        <script>
+            showMessage('Atención', '<?= $_GET['msg']; ?>', 'success');
+        </script>
+    <?php endif; ?>

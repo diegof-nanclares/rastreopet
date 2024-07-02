@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden; /* Esto asegura que el video no se desborde en pantallas pequeñas */
+}
+
+#background-video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.request-qr-locator, .email-recover {
+    font-family: 'Jost*';
+}
+
+.card{
+ background-color: rgba(255, 255, 255, 0.8);
+}
+
+.btn.btn-primary.btn-block {
+    background-color: #5E558E;
+    font-family: 'Jost*', sans-serif;
+    font-weight: bold;
+}
+
+.form-group label {
+    font-family: 'Jomhuria', sans-serif;
+    font-weight: lighter;
+}
+
+.form-control {
+    font-family: 'Jost*', sans-serif;
+    font-weight: bold;
+}
+
+.form-control::placeholder {
+    font-weight: lighter;
+}
+
+
+footer {
+    font-family: 'Jomhuria', sans-serif;
+    color: #ffffff;
+    text-stroke: 2px black;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 22px;
+    height: 35px;
+}
+
+footer > p {
+    margin-top: -10px;
+}
+
+
+.img-fluid {
+    max-width: 75%;
+    margin-left: 7.5%;
+}
+
+
+.swal-button.swal-button--confirm {
+    background-color: #5E558E;
+    color: #ffffff;
+}

@@ -1,0 +1,11 @@
+/* font-face.css */
+@font-face {
+    font-family: 'Jomhuria1';
+    src: url('../fonts/Jomhuria/Jomhuria-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Jost*1';
+    src: url('../fonts/Jost*/Jost*-VariableFont_wght.ttf') format('truetype');
+}
+

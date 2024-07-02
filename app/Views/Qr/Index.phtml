@@ -1,0 +1,82 @@
+<?php
+/**
+ * @var $qrRecords
+ * @var $logo
+ */
+
+?>
+
+<div class="menu-container">
+    <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <img class="main-logo"  src="<?= $logo ?>" alt="Rastreo Pet">
+    <div class="sidebar">
+        <div class="menu-items">
+            <div class="greeting-section">
+                <h3><i data-feather="circle" class="icon-font-10 feather-icon icon-green pulse-icon"></i><?= $_SESSION['name']  ?></h3>
+            </div>
+            <a href="/"><i data-feather="users" class="icon-font-15 feather-icon"></i><span>usuarios</span></a>
+            <a href="/qr"><i data-feather="map-pin" class="icon-font-15 feather-icon"></i><span>Localizadores</span></a>
+            <a href="/pet/petsadmin"><i data-feather="list" class="icon-font-15 feather-icon"></i><span>Mascotas</span></a>
+            <a href="/closesession"><i data-feather="log-out" class="icon-font-15 feather-icon"></i><span>Cerrar Sesión</span></a>
+        </div>
+    </div>
+</div>
+
+<div class="main-content">
+    <table class="action-table-buttons">
+        <tr>
+            <td>
+                <a href="/qrgenerate"><button class="primary-action-table-button">Generar nuevo Qr</button></a>
+            </td>
+        </tr>
+    </table>
+    <div class="table-container">
+        <h4 class="section-page-title">Localizadores generados <i data-feather="map-pin" class="icon-font-25 feather-icon"></i></h4>
+    <table id="datatablerows" class="display" style="width:80%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Código localizador</th>
+                <th>Habilitado</th>
+                <th>Mascota</th>
+                <th>Ver</th>
+                <th>Vsita Previa</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach($qrRecords as $qrRecord): ?>
+            <tr>
+                <td><?= $qrRecord['entity_id'] ?></td>
+                <td><?= $qrRecord['qr_identifier'] ?></td>
+                <td><?= $qrRecord['enabled'] ? 'Sí' : 'No' ?></td>
+                <td><a href="pet/detail/?id=<?= $qrRecord['pet_id'] ?>"><?= $qrRecord['name']  ?></a></td>
+                <td><a href="qr/viewqrlocator/?id=<?= $qrRecord['qr_identifier'] ?>"><i data-feather="eye" class="icon-font-15 feather-icon"></i></a></td>
+                <td>
+                    <?php if($qrRecord['enabled']): ?>
+                    <a target="_blank" href="/pet/preview/?qrId=<?=  $qrRecord['qr_identifier'];?>">
+                        <i data-feather="play" class="icon-font-15 feather-icon"></i>
+                    </a>
+                    <?php endif; ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        <tfoot>
+        </tfoot>
+        </tbody>
+    </table>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('#datatablerows').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'exddcel', 'pdf', 'print'
+            ]
+        } );
+    } );
+</script>
