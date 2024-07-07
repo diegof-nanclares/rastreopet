@@ -1,0 +1,12 @@
+RewriteEngine On
+#RewriteCond %{REQUEST_URI} !\.(jpg|jpeg|png|gif|bmp|ico)$
+#RewriteCond %{REQUEST_URI} !^/public/
+#RewriteRule ^$ public/index.php [L]
+#RewriteRule ^(.*)$ public/index.php [L]
+#RewriteEngine On
+
+# Exclude all this formats in the request validator
+RewriteCond %{REQUEST_URI} !\.(jpg|jpeg|png|gif|bmp|ico|js|css|mp4)$
+
+# Apply all rules of rewrite only to requests that are not images
+RewriteRule ^(.*)$ public/index.php [L]
