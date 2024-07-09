@@ -27,7 +27,7 @@
     <div class="sidebar">
         <div class="menu-items">
             <a href="/"><span>Home</span></a>
-            <a href="/"><span>Usuarios</span></a>
+            <a href="/dashboard"><span>Usuarios</span></a>
             <a href="/pet"><span>Mascotas</span></a>
         </div>
     </div>
