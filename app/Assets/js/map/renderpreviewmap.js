@@ -90,7 +90,7 @@ const initMap = async (lat, lng) => {
         mapId: "DEMO_MAP_ID",
     });
 
-    const petPictureElement = document.getElementById('pet-picture');
+    const petPictureElement = document.getElementById('small-image');
     const originalImageUrl = petPictureElement.src;
 
     // Ensure square image dimensions
