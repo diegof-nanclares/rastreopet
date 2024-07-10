@@ -18,7 +18,7 @@
                 <h3 class="name-section"><i data-feather="circle"
                        class="icon-font-10 feather-icon icon-green pulse-icon"></i><?= $_SESSION['name'] ?></h3>
             </div>
-            <a href="/"><i data-feather="users" class="icon-font-15 feather-icon"></i><span>usuarios</span></a>
+            <a href="/dashboard"><i data-feather="users" class="icon-font-15 feather-icon"></i><span>usuarios</span></a>
             <a href="/qr"><i data-feather="map-pin" class="icon-font-15 feather-icon"></i><span>Localizadores</span></a>
             <a href="/pet/petsadmin"><i data-feather="list" class="icon-font-15 feather-icon"></i><span>Mascotas</span></a>
             <a href="/closesession"><i data-feather="log-out"
