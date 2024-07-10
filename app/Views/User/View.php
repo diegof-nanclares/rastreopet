@@ -33,7 +33,7 @@
         <div class="container">
             <div class="container mt-4">
                 <h3 class="info-separator">Información Básica
-                    <a href="/userEdit/index/?id=<?= $user['entity_id'] ?>">
+                    <a href="/useredit/index/?id=<?= $user['entity_id'] ?>">
                         <span>Modificar</span>
                     </a>
                 </h3>

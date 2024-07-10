@@ -8,7 +8,7 @@ use Models\Utils\Util;
 use Models\User;
 
 /**
- * Class UserEditController
+ * Class UsereditController
  * @package Controllers
  */
 class UsereditController
