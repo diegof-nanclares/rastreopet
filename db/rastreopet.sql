@@ -1,4 +1,6 @@
 -- MySQL Workbench Forward Engineering
+create database rastreopet;
+use rastreopet;
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -8,19 +10,19 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Schema mydb
 -- -----------------------------------------------------
 -- -----------------------------------------------------
--- Schema mrastrem7_rastreopet
+-- Schema rastreopet
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mrastrem7_rastreopet
+-- Schema rastreopet
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mrastrem7_rastreopet` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
-USE `mrastrem7_rastreopet` ;
+CREATE SCHEMA IF NOT EXISTS `rastreopet` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
+USE `rastreopet` ;
 
 -- -----------------------------------------------------
--- Table `mrastrem7_rastreopet`.`permission`
+-- Table `rastreopet`.`permission`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mrastrem7_rastreopet`.`permission` (
+CREATE TABLE IF NOT EXISTS `rastreopet`.`permission` (
                                                            `entity_id` INT NOT NULL,
                                                            `permission_name` VARCHAR(45) NULL DEFAULT NULL,
     PRIMARY KEY (`entity_id`))
@@ -30,9 +32,9 @@ CREATE TABLE IF NOT EXISTS `mrastrem7_rastreopet`.`permission` (
 
 
 -- -----------------------------------------------------
--- Table `mrastrem7_rastreopet`.`permissionxrole`
+-- Table `rastreopet`.`permissionxrole`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mrastrem7_rastreopet`.`permissionxrole` (
+CREATE TABLE IF NOT EXISTS `rastreopet`.`permissionxrole` (
                                                                 `entity_id` INT NOT NULL,
                                                                 `permission_id` INT NULL DEFAULT NULL,
                                                                 `role_id` INT NULL DEFAULT NULL,
@@ -43,9 +45,9 @@ CREATE TABLE IF NOT EXISTS `mrastrem7_rastreopet`.`permissionxrole` (
 
 
 -- -----------------------------------------------------
--- Table `mrastrem7_rastreopet`.`pet`
+-- Table `rastreopet`.`pet`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mrastrem7_rastreopet`.`pet` (
+CREATE TABLE IF NOT EXISTS `rastreopet`.`pet` (
                                                     `entity_id` INT NOT NULL AUTO_INCREMENT,
                                                     `name` VARCHAR(45) NULL DEFAULT NULL,
     `pet_type` VARCHAR(45) NULL DEFAULT NULL,
@@ -69,9 +71,9 @@ CREATE TABLE IF NOT EXISTS `mrastrem7_rastreopet`.`pet` (
 
 
 -- -----------------------------------------------------
--- Table `mrastrem7_rastreopet`.`pet_type`
+-- Table `rastreopet`.`pet_type`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mrastrem7_rastreopet`.`pet_type` (
+CREATE TABLE IF NOT EXISTS `rastreopet`.`pet_type` (
                                                          `entity_id` INT NOT NULL,
                                                          `type_name` VARCHAR(45) NULL DEFAULT NULL,
     PRIMARY KEY (`entity_id`))
@@ -81,9 +83,9 @@ CREATE TABLE IF NOT EXISTS `mrastrem7_rastreopet`.`pet_type` (
 
 
 -- -----------------------------------------------------
--- Table `mrastrem7_rastreopet`.`position_track_history`
+-- Table `rastreopet`.`position_track_history`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mrastrem7_rastreopet`.`position_track_history` (
+CREATE TABLE IF NOT EXISTS `rastreopet`.`position_track_history` (
                                                                        `entity_id` INT NOT NULL AUTO_INCREMENT,
                                                                        `lattitude` VARCHAR(45) NULL DEFAULT NULL,
     `longitude` VARCHAR(45) NULL DEFAULT NULL,
@@ -98,9 +100,9 @@ CREATE TABLE IF NOT EXISTS `mrastrem7_rastreopet`.`position_track_history` (
 
 
 -- -----------------------------------------------------
--- Table `mrastrem7_rastreopet`.`qr_locator`
+-- Table `rastreopet`.`qr_locator`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mrastrem7_rastreopet`.`qr_locator` (
+CREATE TABLE IF NOT EXISTS `rastreopet`.`qr_locator` (
                                                            `entity_id` INT NOT NULL AUTO_INCREMENT,
                                                            `qr_identifier` LONGTEXT NULL DEFAULT NULL,
                                                            `image_path` VARCHAR(200) NULL DEFAULT NULL,
@@ -118,9 +120,9 @@ CREATE TABLE IF NOT EXISTS `mrastrem7_rastreopet`.`qr_locator` (
 
 
 -- -----------------------------------------------------
--- Table `mrastrem7_rastreopet`.`user`
+-- Table `rastreopet`.`user`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mrastrem7_rastreopet`.`user` (
+CREATE TABLE IF NOT EXISTS `rastreopet`.`user` (
                                                      `entity_id` INT NOT NULL AUTO_INCREMENT,
                                                      `name` VARCHAR(45) NULL DEFAULT NULL,
     `lastname` VARCHAR(45) NULL DEFAULT NULL,
@@ -139,9 +141,9 @@ CREATE TABLE IF NOT EXISTS `mrastrem7_rastreopet`.`user` (
 
 
 -- -----------------------------------------------------
--- Table `mrastrem7_rastreopet`.`user_role`
+-- Table `rastreopet`.`user_role`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mrastrem7_rastreopet`.`user_role` (
+CREATE TABLE IF NOT EXISTS `rastreopet`.`user_role` (
                                                           `entity_id` INT NOT NULL,
                                                           `type_name` VARCHAR(45) NULL DEFAULT NULL,
     PRIMARY KEY (`entity_id`))
