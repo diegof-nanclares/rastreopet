@@ -6,7 +6,7 @@
 
 <?php if(!isset($removeFooter) || !$removeFooter): ?>
 <center><footer>
-        <p>Rastreo Pet © 2023 - Todos los derechos reservados</p>
+        <p>Rastreo Pet © <?=  date("Y"); ?> - Todos los derechos reservados</p>
     </footer>
 </center>
 <?php endif; ?>

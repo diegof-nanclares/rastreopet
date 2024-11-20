@@ -37,6 +37,10 @@ class App
                 return false;
             }
 
+             if($url[0] == "rastreopet") {
+                $url[0] = "home";
+            
+             }   
             $this->controller = ucfirst($url[0]) . 'Controller';
             if (count($url) > 1) {
                 $this->method = $url[1];
