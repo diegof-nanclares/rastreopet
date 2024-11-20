@@ -6,7 +6,7 @@ return [
         'host' => 'localhost',
         'username' => 'root',
         'password' => '',
-        'database' => 'findpetsmart',
+        'database' => 'rastreopet',
     ],
     'session' => [
         'name' => 'myapp_session',
