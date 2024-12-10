@@ -67,7 +67,7 @@
                         <td><?= $user['address'] ?></td>
                         <td><?= $user['user_role'] === 1 ? 'Administrador' : 'Usuario Estándar' ?></td>
                         <td><?= $user['username'] ?></td>
-                        <td><a href="/userdetail/index/?id=<?=  $user['entity_id'];?>"><i data-feather="eye" class="icon-font-15 feather-icon"></i></a></td>
+                        <td><a href="/userdetail/index/?id=<?=  $user['entity_id'];?>" target="_blank"><i data-feather="eye" class="icon-font-15 feather-icon"></i></a></td>
                         <td><a <?= $whatsApp ? 'target="_blank"' : '' ?> href="<?= $comUrl ?>"><?= $comLabel ?></a></td>
                     </tr>
                 <?php endforeach; ?>
