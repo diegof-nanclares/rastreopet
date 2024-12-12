@@ -129,22 +129,20 @@ const initMap = async (lat, lng) => {
         // Draw image centered, preserving aspect ratio
         context.drawImage(img, (squareSize - img.width) / 2, (squareSize - img.height) / 2);
 
-        // Overlay circular border
+        // Apply circular clipping path
         context.beginPath();
         context.arc(squareSize / 2, squareSize / 2, squareSize / 2, 0, 2 * Math.PI);
-        context.lineWidth = 3; // Adjust border width as needed
-        context.strokeStyle = '#FF0000'; // Adjust border color as desired
-        context.stroke();
+        context.clip();
 
         const imageData = canvas.toDataURL('image/png');
 
-        // Create marker with consistent sizing
+        // Create marker with the clipped image as the icon
         var marker = new google.maps.Marker({
             position: position,
             map: map,
             icon: {
                 url: imageData,
-                scaledSize: new google.maps.Size(55, 55), // Use squareSize for consistency
+                scaledSize: new google.maps.Size(55, 55),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(0, 0)
             },
@@ -152,5 +150,6 @@ const initMap = async (lat, lng) => {
         });
     };
     img.src = originalImageUrl;
+};
 };
 
