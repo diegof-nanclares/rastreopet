@@ -46,6 +46,7 @@
                 <th>Edad/ Años</th>
                 <th>Recompensa</th>
                 <th>Ver</th>
+                <th>Editar</th>
                 <th>Vista Previa</th>
             </tr>
             </thead>
@@ -60,6 +61,7 @@
                     <td><?= $pet['age'] ?></td>
                     <td><?= is_numeric($pet['reward']) ?  \Models\Utils\Util::formatNumberCurrency($pet['reward']) : 'Sin asignar' ?></td>
                     <td><a href="/pet/detail/?id=<?=  $pet['entity_id'];?>"><i data-feather="eye" class="icon-font-15 feather-icon"></i></a></td>
+                    <td><a href="/pet/updatepet/?id=<?=  $pet['entity_id'];?>"><i data-feather="edit" class="icon-font-15 feather-icon"></i></a></td>
                     <td><a href="/pet/preview/?qrId=<?=  $pet['qr_identifier'];?>" target="_blank"><i data-feather="play" class="icon-font-15 feather-icon"></i></a></td>
                 </tr>
             <?php endforeach; ?>
