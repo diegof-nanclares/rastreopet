@@ -142,7 +142,7 @@ const initMap = async (lat, lng) => {
             map: map,
             icon: {
                 url: imageData,
-                scaledSize: new google.maps.Size(55, 55),
+                scaledSize: new google.maps.Size(12, 12),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(0, 0)
             },
@@ -151,5 +151,5 @@ const initMap = async (lat, lng) => {
     };
     img.src = originalImageUrl;
 };
-};
+
 
