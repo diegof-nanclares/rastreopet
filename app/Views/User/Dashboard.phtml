@@ -70,7 +70,7 @@
                         <td><?= $user['username'] ?></td>
                         <td><a href="/userdetail/index/?id=<?=  $user['entity_id'];?>" target="_blank"><i data-feather="eye" class="icon-font-15 feather-icon"></i></a></td>
                         <td><a <?= $whatsApp ? 'target="_blank"' : '' ?> href="<?= $comUrl ?>"><?= $comLabel ?></a></td>
-                        <td><a href="/useredit/index/?id=<?=  $user['entity_id'];?>" target="_blank"><i data-feather="pencil" class="icon-font-15 feather-icon"></i></a></td>
+                        <td><a href="/useredit/index/?id=<?=  $user['entity_id'];?>" target="_blank"><i data-feather="edit" class="icon-font-15 feather-icon"></i></a></td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
