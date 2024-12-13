@@ -227,7 +227,7 @@ class QrModel
 
     private function createQrCodeImg(string $text, string $filePath)
     {
-        \QRcode::png($text, $filePath, QR_ECLEVEL_H, 10, 1);
+        \QRcode::png($text, $filePath, QR_ECLEVEL_H, 6, 2);
     }
 
     /**
