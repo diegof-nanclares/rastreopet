@@ -60,8 +60,8 @@ class QrModel
      */
     public function save()
     {
+        $db = Database::getInstance();
         try {
-            $db = Database::getInstance();
             $db->beginTransaction();
             $stmt = $db->prepare("INSERT INTO " . self::TABLE. " (qr_identifier, image_path, enabled, pet_id, owner_id, img_name, img_ext, pointer_url) VALUES (:qr_id, :image, :enabled, :pet_id, :owner_id, :img_name, :img_ext, :pointer_url)");
             $qrId = $this->getData(self::QRID);
@@ -95,8 +95,8 @@ class QrModel
     }
 
     public function updateQrLocatorData() {
+        $db = Database::getInstance();
         try {
-            $db = Database::getInstance();
             $db->beginTransaction();
             $stmt = $db->prepare("UPDATE " . self::TABLE. " SET enabled = :enabled, pet_id = :pet_id, owner_id = :owner_id WHERE qr_identifier = :qr_id");
             $qrId = $this->getData(self::QRID);
@@ -227,7 +227,7 @@ class QrModel
 
     private function createQrCodeImg(string $text, string $filePath)
     {
-        \QRcode::png($text, $filePath, QR_ECLEVEL_H, 6, 2);
+        \QRcode::png($text, $filePath, QR_ECLEVEL_H, 10, 1);
     }
 
     /**
