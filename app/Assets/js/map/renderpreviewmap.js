@@ -136,7 +136,7 @@ const initMap = async (lat, lng) => {
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(0, 0)
             }, **/
-           icon: {
+          /** icon: {
                // url: imageData,
                path: google.maps.SymbolPath.CIRCLE,
                scale: 5,
@@ -147,11 +147,20 @@ const initMap = async (lat, lng) => {
                // scaledSize: new google.maps.Size(12, 12),
                //origin: new google.maps.Point(0, 0),
                //anchor: new google.maps.Point(0, 0)
-           },
+           },**/
+            icon: {
+                url: originalImageUrl,
+                scaledSize: new google.maps.Size(32, 32), // Adjust size as needed
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(16, 16), // Center the anchor
+                shape: {
+                    type: 'circle',
+                    coords: [16, 16, 16] // Radius of 16 pixels for a 32x32 image
+                }
+            },
             title: 'PERRITO O GATICO'
         });
     };
     img.src = originalImageUrl;
-};
-
+};ß
 
