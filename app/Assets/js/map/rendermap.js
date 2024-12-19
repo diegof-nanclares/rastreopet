@@ -141,15 +141,19 @@ const initMap = async (lat, lng) => {
             position: position,
             map: map,
             icon: {
-                url: imageData,
-                scaledSize: new google.maps.Size(12, 12),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(0, 0)
+               // url: imageData,
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 5,
+                fillColor: 'purple',
+                fillOpacity: 0.7,
+                strokeWeight: 1,
+                strokeColor: '#000'
+                // scaledSize: new google.maps.Size(12, 12),
+                //origin: new google.maps.Point(0, 0),
+                //anchor: new google.maps.Point(0, 0)
             },
             title: 'PERRITO O GATICO'
         });
     };
     img.src = originalImageUrl;
 };
-
-
