@@ -150,12 +150,12 @@ const initMap = async (lat, lng) => {
            },**/
             icon: {
                 url: originalImageUrl,
-                scaledSize: new google.maps.Size(32, 32), // Adjust size as needed
+                scaledSize: new google.maps.Size(64, 64), // Adjust size as needed
                 origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(16, 16), // Center the anchor
+                anchor: new google.maps.Point(32, 32), // Center the anchor
                 shape: {
                     type: 'circle',
-                    coords: [16, 16, 16] // Radius of 16 pixels for a 32x32 image
+                    coords: [32, 32, 32] // Radius of 16 pixels for a 32x32 image
                 }
             },
             title: 'PERRITO O GATICO'
