@@ -42,6 +42,7 @@ class AuthController
             }
 
             header("Location: /userdashboard");
+            return;
         } else {
             $message = $user || $password ? "Email o contraseña incorrectos, verifique e intentelo nuevamente" : '';
             require_once __DIR__ . '/../Views/login.php';
