@@ -10,7 +10,7 @@ use Models\Utils\Util;
  * Class DashboardController
  * @package Controllers
  */
-class UserDashboardController
+class UserdashboardController
 {
     private $logger;
 

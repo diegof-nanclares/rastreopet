@@ -35,9 +35,6 @@ class AuthController
            $authenticated = $userModel->getUserAuth($user, $password);
        }
 
-       var_dump($authenticated);
-       exit;
-
         if(is_array($authenticated) && $authenticated['authenticated']) {
             if($authenticated['user']['user_role'] == self::ADMIN) {
                 header("Location: /dashboard");
