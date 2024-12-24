@@ -8,7 +8,7 @@ use Models\Core\Database;
  * Class UserModel
  * @package Models\User
  */
-class UserModel
+class UserModel extends  Persona
 {
 
     private $entityId;

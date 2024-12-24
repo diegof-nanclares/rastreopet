@@ -30,6 +30,7 @@
             <div class="container">
                 <h3 class="info-separator">Información Básica</h3>
                 <form action="/saveuser/edit/?>" method="post">
+                    <input type="hidden" name="id" value="<?= $user['entity_id'] ?>">
                     <div class="form-group">
                         <label for="nombre">Nombre:</label>
                         <input type="text" class="form-control" id="nombre" name="name" placeholder="Ingrese su nombre" value="<?= $user['name'] ?>" required>
