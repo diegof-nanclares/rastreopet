@@ -60,7 +60,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="is_phone_whatsapp">Este celular usa WhatsApp?</label>
-                            <input type="checkbox" class="form-check-input" id="is_phone_whatsapp"
+                            <input type="checkbox"  id="is_phone_whatsapp"
                                    name="is_phone_whatsapp" <?= $user['is_phone_whatsapp'] == 1 ? 'checked' : ''; ?>
                                    disabled>
                         </div>
