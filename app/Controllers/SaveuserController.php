@@ -9,11 +9,11 @@ use Models\User\UserModel;
  * Class QrController
  * @package Controllers
  */
-class SaveuserController extends Admin\BaseController
+class SaveuserController
 {
 
     public function __construct(){
-        parent::__construct();
+
     }
 
     /**
