@@ -5,26 +5,25 @@ use Models\Pet\PetModel;
 use Models\Qr\QrModel;
 use Models\User\UserModel;
 use Models\Utils\Util;
-use Controllers\AuthController;
 
 /**
  * Class PetController
  * @package Controllers
  */
-class PetController
+class PetController extends Admin\BaseController
 {
-
-    private $authController;
+    protected AuthController $authController;
 
     public function __construct() {
-        $this->authController = new \Controllers\AuthController();
+        $this->authController = new AuthController();
     }
     public function index()
     {
         $qrId = $_GET['qrId'] ?? null;
-        if(!$this->authController->isLoggedIn() && ! $qrId) {
+        if(!$qrId) {
             $this->authController->closeSession();
         }
+
         if($qrId) {
             $this->verifyQrStatus($qrId);
         }

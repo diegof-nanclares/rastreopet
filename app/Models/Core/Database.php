@@ -31,10 +31,12 @@ class Database
                 );
                 self::$instance->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
                 self::$instance->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
+
             } catch (\Exception $e) {
                 throw new \Exception('An error ocurred during application start: ' . $e->getMessage());
             }
         }
+
         return self::$instance;
     }
 }

@@ -8,7 +8,7 @@ use Models\Core\Database;
  * Class PetModel
  * @package Models\Pet
  */
-class PetModel
+class PetModel extends \Models\Core\AbstractModel
 {
     public const DOG = 'Perro';
     public const CAT = 'Gato';
@@ -31,19 +31,12 @@ class PetModel
 
     const TABLE = 'pet';
 
-    /**
-     * @param $attr
-     * @return mixed
-     */
-    public function getAttribute($attr) {
+    public $attr;
+    public function getAttribute(string $attr){
         return $this->$attr;
     }
 
-    /**
-     * @param $attr
-     * @param $value
-     */
-    public function setAttribute($attr, $value) {
+    public function setAttribute($attr, $value): void {
         $this->$attr = $value;
     }
 

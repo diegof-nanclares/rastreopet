@@ -6,13 +6,12 @@ use Models\Qr\QrModel;
 use Models\Utils\Util;
 use Models\Pet;
 use Models\Position\PostionTrackingModel;
-use Controllers\AuthController;
 
 /**
  * Class QrController
  * @package Controllers
  */
-class QrController
+class QrController extends Admin\BaseController
 {
 
     private $pet;
@@ -21,22 +20,16 @@ class QrController
 
     private $trackingData;
 
-    private $autController;
 
     public function __construct()
     {
         $this->pet = new Pet\PetModel();
         $this->qr = new QrModel();
         $this->trackingData = new PostionTrackingModel();
-        $this->autController = new AuthController();
     }
 
     public function index()
     {
-        if(!$this->autController->isLoggedIn()) {
-            $this->autController->closeSession();
-        }
-
         $styles = [
             Util::getCssUrl('font_face'),
             Util::getCssUrl('menu', 'dashboard'),

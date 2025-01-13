@@ -12,7 +12,7 @@ require_once __DIR__ . '/../../lib/phpqrcode/qrlib.php';
  * Class UserModel
  * @package Models\User
  */
-class QrModel
+class QrModel extends \Models\Core\AbstractModel
 {
     private $entityId;
     private $qrIdentifier;
@@ -38,6 +38,15 @@ class QrModel
 
     const QR_ENABLED_STATUS = 1;
     const QR_DISABLED_STATUS = 0;
+
+    public $attr;
+    public function getAttribute(string $attr){
+        return $this->$attr;
+    }
+
+    public function setAttribute($attr, $value): void {
+        $this->$attr = $value;
+    }
 
     /**
      * @param $propertyName

@@ -10,18 +10,14 @@ use Models\Utils\Util;
  * Class UserDetailController
  * @package Controllers
  */
-class UserdetailController
+class UserdetailController extends Admin\BaseController
 {
-    private $authController;
     public function __construct() {
-        $this->authController = new AuthController();
+        parent::__construct();
     }
 
     public function index()
     {
-        if(!$this->authController->isLoggedIn()) {
-            $this->authController->closeSession();
-        }
         $styles = [
             Util::getCssUrl('bootstrap.min', 'bootstrap'),
             Util::getCssUrl('font_face'),

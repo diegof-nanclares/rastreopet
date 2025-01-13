@@ -11,23 +11,19 @@ use Models\User;
  * Class UsereditController
  * @package Controllers
  */
-class UsereditController
+class UsereditController extends Admin\BaseController
 {
 
     private $user;
 
     public function __construct(){
-        $this->autController = new AuthController();
+        parent::__construct();
         $this->user = new User\UserModel();
     }
 
 
     public function index()
     {
-        if(!$this->autController->isLoggedIn()) {
-            $this->autController->closeSession();
-        }
-
         $styles = [
             Util::getCssUrl('bootstrap.min', 'bootstrap'),
             Util::getCssUrl('font_face'),

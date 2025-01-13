@@ -3,32 +3,18 @@
 namespace Controllers;
 
 use Models\Qr\QrModel;
-use Controllers\AuthController;
-/**
- * Class QrGenerateController
- * @package Controllers
- */
-class QrgenerateController
+
+class QrgenerateController extends Admin\BaseController
 {
-
-    /**
-     * @var \Controllers\AuthController
-     */
-    private $authController;
-
     private $qrModel;
 
     public function __construct()
     {
-        $this->authController = new AuthController();
+       parent::__construct();
     }
 
     public function index()
     {
-        if(!$this->authController->isLoggedIn()) {
-            $this->authController->closeSession();
-        }
-
         $this->qrModel = new QrModel();
         $this->renderHeader();
         $qrImageGenerated = $this->generateNewQrCode($this->qrModel);
@@ -57,5 +43,4 @@ class QrgenerateController
     public function generateNewQrCode() {
         return  $this->qrModel->generateNewQrCode();
     }
-
 }
