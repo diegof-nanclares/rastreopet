@@ -23,6 +23,7 @@ class QrController extends Admin\BaseController
 
     public function __construct()
     {
+        parent::__construct();
         $this->pet = new Pet\PetModel();
         $this->qr = new QrModel();
         $this->trackingData = new PostionTrackingModel();
@@ -59,10 +60,6 @@ class QrController extends Admin\BaseController
 
 
     public function viewQrLocator() {
-        if(!$this->autController->isLoggedIn()) {
-            $this->autController->closeSession();
-        }
-
         $this->renderHeader();
         $qrModel = new QrModel();
         $qrId = $_GET['id'] ?? null;
@@ -113,9 +110,6 @@ class QrController extends Admin\BaseController
     }
 
     public function renderQrLocator($qrData) {
-        if(!$this->autController->isLoggedIn()) {
-            $this->autController->closeSession();
-        }
         $petData = $this->pet->getPetById($qrData['pet_id']);
         $placeholder = Util::getImageUrl('pet-picture-placeholder.png', 'placeholders');
         $petImage = !empty($petData['img_name']) ? Util::getImageUrl( $petData['img_name'], 'pet/profile' )  : $placeholder;

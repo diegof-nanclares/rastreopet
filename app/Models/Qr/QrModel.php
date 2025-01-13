@@ -14,6 +14,7 @@ require_once __DIR__ . '/../../lib/phpqrcode/qrlib.php';
  */
 class QrModel extends \Models\Core\AbstractModel
 {
+    const TABLE = 'qr_locator';
     private $entityId;
     private $qrIdentifier;
     private $imagePath;
@@ -21,9 +22,9 @@ class QrModel extends \Models\Core\AbstractModel
     private $petId;
     private $ownerId;
     private $imageName;
-    private $imageExt;
 
-    const TABLE = 'qr_locator';
+    private $imageExt;
+    private $pointerUrl;
 
     //Properties
     const ENTITY = 'entityId';
@@ -49,22 +50,6 @@ class QrModel extends \Models\Core\AbstractModel
     }
 
     /**
-     * @param $propertyName
-     * @return mixed
-     */
-    public function getData($propertyName) {
-        return $this->$propertyName;
-    }
-
-    /**
-     * @param $propertyName
-     * @param $value
-     */
-    public function setData($propertyName, $value) {
-         $this->$propertyName = $value;
-    }
-
-    /**
      * @throws \Exception
      */
     public function save()
@@ -73,14 +58,14 @@ class QrModel extends \Models\Core\AbstractModel
         try {
             $db->beginTransaction();
             $stmt = $db->prepare("INSERT INTO " . self::TABLE. " (qr_identifier, image_path, enabled, pet_id, owner_id, img_name, img_ext, pointer_url) VALUES (:qr_id, :image, :enabled, :pet_id, :owner_id, :img_name, :img_ext, :pointer_url)");
-            $qrId = $this->getData(self::QRID);
-            $path = $this->getData(self::PATH);
-            $enabled = $this->getData(self::ENABLED);
-            $petId = $this->getData(self::PET_ID);
-            $ownerId = $this->getData(self::OWNER_ID);
-            $imageName = $this->getData(self::IMAGE_NAME);
-            $imageExt = $this->getData(self::IMAGE_EXT);
-            $url = $this->getData(self::POINTER_URL);
+            $qrId = $this->getAttribute('qrIdentifier');
+            $path = $this->getAttribute('imagePath');
+            $enabled = $this->getAttribute('enabled');
+            $petId = $this->getAttribute('petId');
+            $ownerId = $this->getAttribute('ownerId');
+            $imageName = $this->getAttribute('imageName');
+            $imageExt = $this->getAttribute('imageExt');
+            $url = $this->getAttribute('pointerUrl');
 
             // Bind parameters
             $stmt->bindParam(':qr_id', $qrId);
@@ -108,10 +93,10 @@ class QrModel extends \Models\Core\AbstractModel
         try {
             $db->beginTransaction();
             $stmt = $db->prepare("UPDATE " . self::TABLE. " SET enabled = :enabled, pet_id = :pet_id, owner_id = :owner_id WHERE qr_identifier = :qr_id");
-            $qrId = $this->getData(self::QRID);
-            $enabled = $this->getData(self::ENABLED);
-            $petId = $this->getData(self::PET_ID);
-            $ownerId = $this->getData(self::OWNER_ID);
+            $qrId = $this->getAttribute('qrId');
+            $enabled = $this->getAttribute('enabled');
+            $petId = $this->getAttribute('petId');
+            $ownerId = $this->getAttribute('ownerId');
 
             // Bind parameters
             $stmt->bindParam(':qr_id', $qrId);
@@ -217,14 +202,14 @@ class QrModel extends \Models\Core\AbstractModel
 
         // Load the logo in center of QR
         $this->markQrWithLogo($logoUrl, $qr, $filePath);
-        $this->setData(self::QRID, $fileNameEncoded);
-        $this->setData(self::PATH, $filePath);
-        $this->setData(self::ENABLED, self::QR_DISABLED_STATUS);
-        $this->setData(self::PET_ID, null);
-        $this->setData(self::OWNER_ID, null);
-        $this->setData(self::IMAGE_NAME, $newFileName);
-        $this->setData(self::IMAGE_EXT, $ext);
-        $this->setData(self::POINTER_URL, $locatorText);
+        $this->setAttribute('qrIdentifier', $fileNameEncoded);
+        $this->setAttribute('imagePath', $filePath);
+        $this->setAttribute('enabled', self::QR_DISABLED_STATUS);
+        $this->setAttribute('petId', null);
+        $this->setAttribute('ownerId', null);
+        $this->setAttribute('imageName', $newFileName);
+        $this->setAttribute('imageExt', $ext);
+        $this->setAttribute('pointerUrl', $locatorText);
         $this->save();
         return $newFileNameWithExtension;
     }

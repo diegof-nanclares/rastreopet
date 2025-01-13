@@ -86,4 +86,6 @@ rm -rf app/lib/phpqrcode/*errors.txt
 
 Note: Remember to update domain before deploying ---
 
+update user set password = '$2y$12$.Isk5nUzLvU29nz6hlt.Yu3izNG3kTj930aKKMpRZ8IaPs3JGUr0W';
+
 
