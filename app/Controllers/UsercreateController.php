@@ -18,6 +18,8 @@ class UsercreateController extends Admin\BaseController
 
     private $authController;
 
+    private $logger;
+
     public function __construct()
     {
         $this->logger = new Logger();
