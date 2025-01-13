@@ -2,33 +2,24 @@
 
 namespace Controllers;
 use Models\Pet\PetModel;
-use Models\User\UserModel;
 use Models\Utils\Logger;
 use Models\Utils\Util;
 
-/**use
- * Class DashboardController
- * @package Controllers
- */
-class UserdashboardController
+class UserdashboardController extends Admin\BaseController
 {
     private $logger;
 
-    private $autController;
     /**
      * DashboardController constructor.
      */
     public function __construct()
     {
         $this->logger = $errorLogger = new Logger();
-        $this->autController = new AuthController();
+        parent::__construct();
     }
 
     public function index()
     {
-        if(!$this->autController->isLoggedIn()) {
-            $this->autController->closeSession();
-        }
         $styles = [
             Util::getCssUrl('font_face'),
             Util::getCssUrl('menu', 'dashboard'),

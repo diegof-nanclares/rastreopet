@@ -4,32 +4,25 @@ namespace Controllers;
 use Models\User\UserModel;
 use Models\Utils\Logger;
 use Models\Utils\Util;
-use Controllers\AuthController;
 
 /**use
  * Class DashboardController
  * @package Controllers
  */
-class DashboardController
+class DashboardController extends Admin\BaseController
 {
     private $logger;
-
-    private $autController;
     /**
      * DashboardController constructor.
      */
     public function __construct()
     {
         $this->logger = $errorLogger = new Logger();
-        $this->autController = new AuthController();
+        parent::__construct();
     }
 
     public function index()
     {
-        if(!$this->autController->isLoggedIn()) {
-            $this->autController->closeSession();
-        }
-
         $styles = [
             Util::getCssUrl('font_face'),
             Util::getCssUrl('menu', 'dashboard'),
@@ -65,7 +58,6 @@ class DashboardController
 
     public function renderFooter($styles = [], $js = []) {
         require_once __DIR__ . '/../Views/root/templates/indexFooterLayout.php';
-
     }
 
 

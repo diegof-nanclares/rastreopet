@@ -7,7 +7,7 @@ require __DIR__ . '/../../lib/PHPMailer/src/Exception.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use Models\Utils\Logger;
-class Mail
+class Mail extends \Models\Core\AbstractModel
 {
     public function sendmail($address, $subject, $body)
     {

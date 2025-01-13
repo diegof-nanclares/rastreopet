@@ -10,7 +10,7 @@ use Models\Utils\Util;
  * Class PetController
  * @package Controllers
  */
-class PositionController
+class PositionController extends Admin\BaseController
 {
     private $positionTrackingModel;
 
@@ -19,9 +19,10 @@ class PositionController
     private $mail;
     public function __construct()
     {
-      $this->positionTrackingModel = new PostionTrackingModel();
-      $this->logger = new Logger();
-      $this->mail = new Mail();
+        parent::__construct();
+        $this->positionTrackingModel = new PostionTrackingModel();
+        $this->logger = new Logger();
+        $this->mail = new Mail();
     }
     public function save()
     {

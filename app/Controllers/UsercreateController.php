@@ -11,12 +11,14 @@ use Controllers\AuthController;
  * Class QrController
  * @package Controllers
  */
-class UsercreateController
+class UsercreateController extends Admin\BaseController
 {
 
     private $qrModel;
 
     private $authController;
+
+    private $logger;
 
     public function __construct()
     {

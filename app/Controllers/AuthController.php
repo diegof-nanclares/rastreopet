@@ -32,6 +32,7 @@ class AuthController
 
        if($user && $password) {
            $userModel = new UserModel();
+
            $authenticated = $userModel->getUserAuth($user, $password);
        }
 

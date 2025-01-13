@@ -30,7 +30,7 @@
 <div class="form-container-main">
     <div class="container">
         <h3 class="info-separator">Información Básica</h3>
-        <form>
+        <form action="/saveuser/edit/?>" method="post">
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
                 <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" value="<?= $loggedUserInfo['name'] ?>" required>

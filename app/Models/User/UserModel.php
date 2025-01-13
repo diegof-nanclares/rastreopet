@@ -8,7 +8,7 @@ use Models\Core\Database;
  * Class UserModel
  * @package Models\User
  */
-class UserModel
+class UserModel extends \Models\Core\AbstractModel
 {
 
     private $entityId;
@@ -23,21 +23,16 @@ class UserModel
 
     const TABLE = 'user';
 
-    /**
-     * @param $attr
-     * @return mixed
-     */
-    public function getAttribute($attr) {
+    public $attr;
+    public function getAttribute(string $attr){
         return $this->$attr;
     }
 
-    /**
-     * @param $attr
-     * @param $value
-     */
-    public function setAttribute($attr, $value) {
+    public function setAttribute($attr, $value): void {
         $this->$attr = $value;
     }
+
+
 
     /**
      * @return array

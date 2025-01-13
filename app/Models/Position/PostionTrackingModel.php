@@ -8,7 +8,7 @@ use Models\Core\Database;
  * Class PostionTrackingModel
  * @package Models\Position
  */
-class PostionTrackingModel
+class PostionTrackingModel extends \Models\Core\AbstractModel
 {
     private $entityId;
     private $latitude;
@@ -20,22 +20,14 @@ class PostionTrackingModel
 
     const TABLE = 'position_track_history';
 
-    /**
-     * @param $attr
-     * @return mixed
-     */
-    public function getAttribute($attr) {
+    public $attr;
+    public function getAttribute(string $attr){
         return $this->$attr;
     }
 
-    /**
-     * @param $attr
-     * @param $value
-     */
-    public function setAttribute($attr, $value) {
+    public function setAttribute($attr, $value): void {
         $this->$attr = $value;
     }
-
     /**
      * @return array
      * @throws \Exception

@@ -9,8 +9,13 @@ use Models\Qr\QrModel;
  * Class SavePetController
  * @package Controllers
  */
-class SavepetController
+class SavepetController extends Admin\BaseController
 {
+
+    public function __construct(){
+        parent::__construct();
+    }
+
     /**
      * @throws \Exception
      */

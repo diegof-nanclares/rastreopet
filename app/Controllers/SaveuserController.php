@@ -9,8 +9,13 @@ use Models\User\UserModel;
  * Class QrController
  * @package Controllers
  */
-class SaveuserController
+class SaveuserController extends Admin\BaseController
 {
+
+    public function __construct(){
+        parent::__construct();
+    }
+
     /**
      * @throws \Exception
      */

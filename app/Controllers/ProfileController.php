@@ -4,15 +4,15 @@ namespace Controllers;
 
 use Models\Utils\Util;
 use Models\User;
-class ProfileController
+
+class ProfileController extends Admin\BaseController
 {
-    private $autController;
 
     private $user;
 
     public function __construct()
     {
-        $this->autController = new AuthController();
+        parent::__construct();
         $this->user = new User\UserModel();
     }
 
