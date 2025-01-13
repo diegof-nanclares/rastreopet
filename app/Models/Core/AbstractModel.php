@@ -2,14 +2,9 @@
 
 namespace Models\Core;
 
-class AbstractModel
+abstract class AbstractModel
 {
-    public $attr;
-    public function getAttribute(string $attr){
-        return $this->$attr;
-    }
+    public abstract function getAttribute(string $attr);
 
-    public function setAttribute($attr, $value): void {
-        $this->$attr = $value;
-    }
+    public abstract function setAttribute($attr, $value);
 }

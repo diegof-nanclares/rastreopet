@@ -12,8 +12,6 @@ use Models\Utils\Util;
 class DashboardController extends Admin\BaseController
 {
     private $logger;
-
-    protected $autController;
     /**
      * DashboardController constructor.
      */
