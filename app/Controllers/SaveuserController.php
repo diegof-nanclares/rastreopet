@@ -29,10 +29,10 @@ class SaveuserController
             $qrModel = new QrModel();
             $locatorData = $qrModel->getQrLocatorByEncodedId($qrLocator);
             if($locatorData) {
-                $qrModel->setData(QrModel::OWNER_ID, $record['recordId']);
-                $qrModel->setData(QrModel::PET_ID, null);
-                $qrModel->setData(QrModel::QRID, $qrLocator);
-                $qrModel->setData(QrModel::ENABLED, QrModel::QR_DISABLED_STATUS);
+                $qrModel->setAttribute('ownerId', $record['recordId']);
+                $qrModel->setAttribute('petId', null);
+                $qrModel->setAttribute('qrIdentifier', $qrLocator);
+                $qrModel->setAttribute('enabled', QrModel::QR_DISABLED_STATUS);
                 $response = $qrModel->updateQrLocatorData();
                 if($response['success']) {
                     header("Location:/pet/index/?qrId=" . $qrLocator);
