@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use Models\Qr\QrModel;
+use Models\Utils\Util;
 
 class QrgenerateController extends Admin\BaseController
 {
@@ -15,19 +16,40 @@ class QrgenerateController extends Admin\BaseController
 
     public function index()
     {
+        $styles = [
+            Util::getCssUrl('font_face'),
+            Util::getCssUrl('menu', 'dashboard'),
+            Util::getCssUrl('table', 'dashboard'),
+            Util::getCssUrl('datatables.min', 'datatables'),
+            Util::getCssUrl('feather', 'feather-icons')
+        ];
+
+        $js = [
+            Util::getJsUrl('menu', 'dashboard'),
+            Util::getJsUrl('feather-execute', 'lib/feather'),
+        ];
+
+        $jsHeader = [
+            Util::getJsUrl('jquery.min', 'lib/Jquery'),
+            Util::getJsUrl('datatables.min', 'lib/DataTables'),
+            Util::getJsUrl('sweetalert.min', 'lib/sweetalert'),
+            Util::getJsUrl('alert', 'messages'),
+            Util::getJsUrl('feather.min', 'lib/feather')
+        ];
+
         $this->qrModel = new QrModel();
-        $this->renderHeader();
+        $this->renderHeader($styles, $jsHeader);
         $qrImageGenerated = $this->generateNewQrCode($this->qrModel);
         $this->generateQrMainPage($qrImageGenerated);
-        $this->renderFooter();
+        $this->renderFooter([], $js);
     }
 
-    public function renderHeader() {
+    public function renderHeader($styles = [], $js = []) {
         require_once __DIR__ . '/../Views/root/templates/indexHeaderLayout.php';
 
     }
 
-    public function renderFooter() {
+    public function renderFooter($styles = [], $js = [], $removeFooter = false) {
         require_once __DIR__ . '/../Views/root/templates/indexFooterLayout.php';
 
     }
@@ -37,6 +59,7 @@ class QrgenerateController extends Admin\BaseController
     }
 
     public function generateQrMainPage($qrImageGenerated) {
+        $logo = Util::getImageUrl('rastreopet_white.png', 'logos');
         include_once __DIR__ . '/../Views/Qr/Generate.php';
     }
 
