@@ -43,21 +43,21 @@ class UserModel extends \Models\Core\AbstractModel
         try {
             $db = Database::getInstance();
             $db->beginTransaction();
-
             $name = $this->getAttribute('name');
-            $lastName = $this->getAttribute('lastname');
+            $lastName = $this->getAttribute('lastName');
             $phone = $this->getAttribute('phone');
             $address = $this->getAttribute('address');
             $userRole = $this->getAttribute('userRole');
-            $password = \Models\Utils\Util::generateSafePassword($this->getAttribute('password'));
-            $email = $this->getAttribute('email');
+            $password = $this->getAttribute('password') ? \Models\Utils\Util::generateSafePassword($this->getAttribute('password')) : null;
+            $email = $this->getAttribute('userName');
             $isPhoneWhatsapp = $this->getAttribute('isPhoneWhatsapp');
             $entityId = $this->getAttribute('entityId');
 
-
             if($entityId) {
+                $passwordUpdateBind = $password ? 'password = :password,' : '';
                 $stmt = $db->prepare("UPDATE " . self::TABLE.
-                    " SET name = :name , lastname = :lastname, phone = :phone, address = :address, user_role = :user_role, password = :password, username = :username, is_phone_whatsapp = :is_phone_whatsapp WHERE entity_id = :entity_id");
+                    " SET name = :name , lastname = :lastname, phone = :phone, address = :address, user_role = :user_role, ".
+                    $passwordUpdateBind. " username = :username, is_phone_whatsapp = :is_phone_whatsapp WHERE entity_id = :entity_id");
             } else {
                 $stmt = $db->prepare("INSERT INTO " . self::TABLE.
                     " (entity_id, name, lastname, phone, address, user_role, password, username, is_phone_whatsapp) VALUES " .
@@ -70,7 +70,9 @@ class UserModel extends \Models\Core\AbstractModel
             $stmt->bindParam(':phone', $phone);
             $stmt->bindParam(':address', $address);
             $stmt->bindParam(':user_role', $userRole);
-            $stmt->bindParam(':password', $password);
+            if($password) {
+                $stmt->bindParam(':password', $password);
+            }
             $stmt->bindParam(':username', $email);
             $stmt->bindParam(':is_phone_whatsapp', $isPhoneWhatsapp);
 
