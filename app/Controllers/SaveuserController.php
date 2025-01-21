@@ -65,7 +65,8 @@ class SaveuserController
         $name = $_POST['name'] ?? null;
         $lastname = $_POST['lastname'] ?? null;
         $cellphone = $_POST['cellphone']?? null;
-        $useWhatsapp = !empty($_POST['is_phone_whatsapp']) ? 1 : 0;
+        $checkedWhatsaap = $_POST['is_phone_whatsapp'];
+        $useWhatsapp = !empty($checkedWhatsaap) &&  $checkedWhatsaap === 'si' ? 1 : 0;
         $address = $_POST['address']?? null;
         $email = $_POST['email']?? null;
         $userRole = $_POST['user_role']?? 2;
@@ -74,11 +75,11 @@ class SaveuserController
         $data = new \stdClass();
         $data->entityId = $id;
         $data->name =$name;
-        $data->lastname = $lastname;
+        $data->lastName = $lastname;
         $data->phone = $cellphone;
         $data->isPhoneWhatsapp = $useWhatsapp;
         $data->address = $address;
-        $data->email = $email;
+        $data->userName = $email;
         $data->password = $password;
         $data->userRole = $userRole;
         return $data;
@@ -110,7 +111,6 @@ class SaveuserController
         foreach ($vars as $varName => $value) {
             $userModel->setAttribute($varName, $value);
         }
-
         return $userModel->save();
     }
 }
