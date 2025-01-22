@@ -34,6 +34,7 @@ class ProfileController extends Admin\BaseController
         $js = [
             Util::getJsUrl('menu', 'dashboard'),
             Util::getJsUrl('feather-execute', 'lib/feather'),
+            Util::getJsUrl('password-validation', 'user/locator'),
         ];
 
         $jsHeader = [

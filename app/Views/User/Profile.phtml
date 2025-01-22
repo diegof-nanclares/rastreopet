@@ -30,7 +30,7 @@
 <div class="form-container-main">
     <div class="container">
         <h3 class="info-separator">Información Básica</h3>
-        <form action="/saveuser/edit/?>" method="post">
+        <form action="/saveuser/edit/?>" onsubmit=" return validateFormPasswords()" method="post">
             <input type="hidden" id="id" name="id" value="<?= $loggedUserInfo['entity_id'] ?>">
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
@@ -67,11 +67,11 @@
             </div>
             <div class="form-group">
                 <label for="contrasena">Contraseña:</label>
-                <input type="password" name="password"  class="form-control" id="contrasena" placeholder="Ingrese nueva contraseña">
+                <input type="password" name="password"  class="form-control" id="password-one" placeholder="Ingrese nueva contraseña">
             </div>
             <div class="form-group">
                 <label for="confirmar-contrasena">Confirmar Contraseña:</label>
-                <input type="password"  name="password"  class="form-control" id="confirmar-contrasena" placeholder="Confirme su contraseña">
+                <input type="password"  name="password"  class="form-control" id="password-two" placeholder="Confirme su contraseña">
             </div>
             <button type="submit" class="btn btn-primary">Actualizar información</button>
         </form>
