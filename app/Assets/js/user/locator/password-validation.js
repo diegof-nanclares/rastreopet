@@ -10,8 +10,8 @@ const validateFormPasswords = () => {
 
     // Validate that the password contains at least one combination of letters and numbers
     const pattern = /^(?=.*\d)(?=.*[a-zA-Z]).*$/;
-    if (!pattern.test(password)) {
-        swal("Atención", "Las contraseñas deben contener al menos una combinación de letras y números", "error");
+    if (password != "" && !pattern.test(password)) {
+        swal("Atención", "Las contraseñas deben contener asl menos una combinación de letras y números", "error");
         return false;
     }
 
