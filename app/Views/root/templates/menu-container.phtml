@@ -1,0 +1,27 @@
+<?php
+/**
+ * @var array $menuItems;
+ */
+?>
+<div class="menu-container">
+    <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <img class="main-logo"  src="<?= $logo ?>" alt="Rastreo Pet">
+    <div class="sidebar">
+        <div class="menu-items">
+            <div class="greeting-section">
+                <h3><i data-feather="circle" class="icon-font-10 feather-icon icon-green pulse-icon"></i><?= $_SESSION['name']  ?></h3>
+            </div>
+            <?php foreach ($menuItems as $menuItem):
+                $menuItemIcon = $menuItem["permission_icon"];
+                $menuItemUrl = $menuItem["permission_action"];
+                $menuItemLabel = $menuItem["permission_name"];
+                include __DIR__ . "/menu-item.phtml";
+                ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
