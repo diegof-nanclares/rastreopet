@@ -3,30 +3,13 @@
  * @var $user
  * @var $petsbyUser
  * @var $logo
+ * @var Models\Core\MenuRenderingManagement $menuRender
  */
-?>
-<div class="menu-container">
-    <div class="menu-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-    <img class="main-logo" src="<?= $logo ?>" alt="Rastreo Pet">
-    <div class="sidebar">
-        <div class="menu-items">
-            <div class="greeting-section">
-                <h3 class="name-section"><i data-feather="circle"
-                       class="icon-font-10 feather-icon icon-green pulse-icon"></i><?= $_SESSION['name'] ?></h3>
-            </div>
-            <a href="/dashboard"><i data-feather="users" class="icon-font-15 feather-icon"></i><span>Usuarios</span></a>
-            <a href="/qr"><i data-feather="map-pin" class="icon-font-15 feather-icon"></i><span>Localizadores</span></a>
-            <a href="/pet/petsadmin"><i data-feather="list" class="icon-font-15 feather-icon"></i><span>Mascotas</span></a>
-            <a href="/closesession"><i data-feather="log-out"
-                                       class="icon-font-15 feather-icon"></i><span>Cerrar Sesión</span></a>
-        </div>
-    </div>
-</div>
 
+$menuItems = $menuRender->getMenusByRole();
+include  __DIR__ . "/../root/templates/menu-container.phtml";
+// Fin name-section class for greeting
+?>
 <div class="main-content">
     <h4 class="section-page-title">Datos de Usuario <i data-feather="user" class="icon-font-25 feather-icon icon-line-top-4"></i></h4>
     <div class="form-container-main">

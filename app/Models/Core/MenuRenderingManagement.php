@@ -6,7 +6,7 @@ use Models\Core\Database;
 class MenuRenderingManagement
 {
     public const PERMISSIONS_TABLE = 'permission';
-    public const PERMISSIONSXROLE_TABLE = 'permissionsxrole';
+    public const PERMISSIONSXROLE_TABLE = 'permissionxrole';
     public function getMenusByRole($userRole = null)
     {
         $roleId = $userRole ??  $this->getCurrentRoleId();

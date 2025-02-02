@@ -6,6 +6,8 @@ use Models\Qr\QrModel;
 use Models\Utils\Util;
 use Models\Pet;
 use Models\Position\PostionTrackingModel;
+use Models\Core\MenuRenderingManagement;
+
 
 /**
  * Class QrController
@@ -20,6 +22,7 @@ class QrController extends Admin\BaseController
 
     private $trackingData;
 
+    private $menuRenderer;
 
     public function __construct()
     {
@@ -27,6 +30,7 @@ class QrController extends Admin\BaseController
         $this->pet = new Pet\PetModel();
         $this->qr = new QrModel();
         $this->trackingData = new PostionTrackingModel();
+        $this->menuRenderer = new MenuRenderingManagement();
     }
 
     public function index()
@@ -106,6 +110,7 @@ class QrController extends Admin\BaseController
 
     public function renderQrIndex($qrRecords) {
         $logo = Util::getImageUrl('rastreopet_white.png', 'logos');
+        $menuRender =  $this->menuRenderer;
         require_once __DIR__ . '/../Views/Qr/Index.phtml';
     }
 

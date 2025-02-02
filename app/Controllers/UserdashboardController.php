@@ -4,10 +4,12 @@ namespace Controllers;
 use Models\Pet\PetModel;
 use Models\Utils\Logger;
 use Models\Utils\Util;
+use Models\Core\MenuRenderingManagement;
 
 class UserdashboardController extends Admin\BaseController
 {
     private $logger;
+    private $menuRenderer;
 
     /**
      * DashboardController constructor.
@@ -15,6 +17,7 @@ class UserdashboardController extends Admin\BaseController
     public function __construct()
     {
         $this->logger = $errorLogger = new Logger();
+        $this->menuRenderer =  new MenuRenderingManagement();
         parent::__construct();
     }
 
@@ -62,6 +65,7 @@ class UserdashboardController extends Admin\BaseController
     public function renderDashboard($pets) {
         $mypetsIcon = Util::getImageUrl('dogandcat.png', 'pet/icons');
         $logo = Util::getImageUrl('rastreopet_white.png', 'logos');
+        $menuRender =  $this->menuRenderer;
         require_once __DIR__ . '/../Views/User/UserDashboard.phtml';
     }
 }

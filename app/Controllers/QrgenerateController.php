@@ -4,14 +4,18 @@ namespace Controllers;
 
 use Models\Qr\QrModel;
 use Models\Utils\Util;
+use Models\Core\MenuRenderingManagement;
+
 
 class QrgenerateController extends Admin\BaseController
 {
     private $qrModel;
+    private $menuRenderer;
 
     public function __construct()
     {
-       parent::__construct();
+        $this->menuRenderer =  new MenuRenderingManagement();
+        parent::__construct();
     }
 
     public function index()
@@ -60,6 +64,7 @@ class QrgenerateController extends Admin\BaseController
 
     public function generateQrMainPage($qrImageGenerated) {
         $logo = Util::getImageUrl('rastreopet_white.png', 'logos');
+        $menuRender =  $this->menuRenderer;
         include_once __DIR__ . '/../Views/Qr/Generate.php';
     }
 
