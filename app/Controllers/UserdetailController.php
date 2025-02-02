@@ -5,6 +5,8 @@ namespace Controllers;
 use Models\Pet\PetModel;
 use Models\User\UserModel;
 use Models\Utils\Util;
+use Models\Core\MenuRenderingManagement;
+
 
 /**
  * Class UserDetailController
@@ -12,7 +14,9 @@ use Models\Utils\Util;
  */
 class UserdetailController extends Admin\BaseController
 {
+    private $menuRenderer;
     public function __construct() {
+        $this->menuRenderer =  new MenuRenderingManagement();
         parent::__construct();
     }
 
@@ -65,6 +69,7 @@ class UserdetailController extends Admin\BaseController
         $id = $_GET['id'] ?? null;
         $petsbyUser = $petsModel->getPetsByUserId($id);
         $logo = Util::getImageUrl('rastreopet_white.png', 'logos');
+        $menuRender =  $this->menuRenderer;
         require_once __DIR__ . '/../Views/User/View.php';
     }
 }

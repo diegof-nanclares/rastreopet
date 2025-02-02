@@ -4,16 +4,20 @@ namespace Controllers;
 
 use Models\Utils\Util;
 use Models\User;
+use Models\Core\MenuRenderingManagement;
 
 class ProfileController extends Admin\BaseController
 {
 
     private $user;
+    private $menuRenderer;
+
 
     public function __construct()
     {
         parent::__construct();
         $this->user = new User\UserModel();
+        $this->menuRenderer =  new MenuRenderingManagement();
     }
 
     public function index()
@@ -64,6 +68,7 @@ class ProfileController extends Admin\BaseController
         $logo = Util::getImageUrl('rastreopet_white.png', 'logos');
         $loggedUserId = $_SESSION['userid'];
         $loggedUserInfo = $this->user->getUserById($loggedUserId);
+        $menuRender =  $this->menuRenderer;
         require_once __DIR__ . '/../Views/User/Profile.phtml';
     }
 }

@@ -152,6 +152,6 @@ class PetModel extends \Models\Core\AbstractModel
         $stm = $db->prepare($query);
         $stm->execute([':id' => $userId]);
         $result = $stm->fetchAll();
-        return $result;
+        return  $result;
     }
 }

@@ -4,6 +4,7 @@ namespace Controllers;
 use Models\User\UserModel;
 use Models\Utils\Logger;
 use Models\Utils\Util;
+use Models\Core\MenuRenderingManagement;
 
 /**use
  * Class DashboardController
@@ -12,12 +13,15 @@ use Models\Utils\Util;
 class DashboardController extends Admin\BaseController
 {
     private $logger;
+
+    private $menuRenderer;
     /**
      * DashboardController constructor.
      */
     public function __construct()
     {
         $this->logger = $errorLogger = new Logger();
+        $this->menuRenderer =  new MenuRenderingManagement();
         parent::__construct();
     }
 
@@ -64,6 +68,7 @@ class DashboardController extends Admin\BaseController
     public function renderDashboard($users) {
         $logo = Util::getImageUrl('rastreopet_white.png', 'logos');
         $usersIcon = Util::getImageUrl('users.png', 'user/icons');
+        $menuRender =  $this->menuRenderer;
         require_once __DIR__ . '/../Views/User/Dashboard.phtml';
     }
 }

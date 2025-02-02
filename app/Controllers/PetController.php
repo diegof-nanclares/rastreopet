@@ -5,6 +5,8 @@ use Models\Pet\PetModel;
 use Models\Qr\QrModel;
 use Models\User\UserModel;
 use Models\Utils\Util;
+use Models\Core\MenuRenderingManagement;
+
 
 /**
  * Class PetController
@@ -13,9 +15,11 @@ use Models\Utils\Util;
 class PetController extends Admin\BaseController
 {
     protected AuthController $authController;
+    private $menuRenderer;
 
     public function __construct() {
         $this->authController = new AuthController();
+        $this->menuRenderer =  new MenuRenderingManagement();
     }
     public function index()
     {
@@ -131,6 +135,7 @@ class PetController extends Admin\BaseController
         $image = $pet['img_name'] ? Util::getImageUrl( $pet['img_name'], 'pet/profile' )  : $imagePlaceHolder;
         $mypetsIcon = Util::getImageUrl('dogandcat.png', 'pet/icons');
         $logo = Util::getImageUrl('rastreopet_white.png', 'logos');
+        $menuRender =  $this->menuRenderer;
         require_once __DIR__ . '/../Views/Pet/ViewPet.php';
         $this->renderAdminFooter([], $js);
     }
@@ -171,6 +176,7 @@ class PetController extends Admin\BaseController
         $image = $pet['img_name'] ? Util::getImageUrl( $pet['img_name'], 'pet/profile' )  : $imagePlaceHolder;
         $userId = $_GET['userid'] ?? null;
         $logo = Util::getImageUrl('rastreopet_white.png', 'logos');
+        $menuRender =  $this->menuRenderer;
         require_once __DIR__ . '/../Views/Pet/ModifyPet.php';
         $this->renderAdminFooter([], $js);
     }
@@ -288,6 +294,7 @@ class PetController extends Admin\BaseController
     private function renderPetsForAdmin($pets) {
         $logo = Util::getImageUrl('rastreopet_white.png', 'logos');
         $petsIcon = Util::getImageUrl('dogandcat.png', 'pet/icons');
+        $menuRender =  $this->menuRenderer;
         require_once __DIR__ . '/../Views/Pet/PetsForAdmin.phtml';
     }
 }

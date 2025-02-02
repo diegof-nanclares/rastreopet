@@ -6,6 +6,8 @@ use Models\Pet\PetModel;
 use Models\User\UserModel;
 use Models\Utils\Util;
 use Models\User;
+use Models\Core\MenuRenderingManagement;
+
 
 /**
  * Class UsereditController
@@ -14,10 +16,14 @@ use Models\User;
 class UsereditController extends Admin\BaseController
 {
 
+    private $menuRenderer;
+
     private $user;
+
 
     public function __construct(){
         parent::__construct();
+        $this->menuRenderer =  new MenuRenderingManagement();
         $this->user = new User\UserModel();
     }
 
@@ -69,6 +75,7 @@ class UsereditController extends Admin\BaseController
         $petsbyUser = $petsModel->getPetsByUserId($id);
         $logo = Util::getImageUrl('rastreopet_white.png', 'logos');
         $loggedUserInfo = $this->user->getUserById($id);
+        $menuRender =  $this->menuRenderer;
         require_once __DIR__ . '/../Views/User/Edit.phtml';
     }
 }

@@ -4,27 +4,11 @@
  * @var $pet;
  * @var $image;
  * @var $logo;
+ * @var Models\Core\MenuRenderingManagement $menuRender
  */
+$menuItems = $menuRender->getMenusByRole();
+include  __DIR__ . "/../root/templates/menu-container.phtml";
 ?>
-
-<div class="menu-container">
-    <div class="menu-toggle">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-    <img class="main-logo"  src="<?= $logo ?>" alt="Rastreo Pet">
-    <div class="sidebar">
-        <div class="menu-items">
-            <div class="greeting-section">
-                <h3 class="name-section"><i data-feather="circle" class="icon-font-10 feather-icon icon-green pulse-icon"></i><?= $_SESSION['name']  ?></h3>
-            </div>
-            <a href="/profile"><i data-feather="user" class="icon-font-15 feather-icon"></i><span>Mi Perfil</span></a>
-            <a href="/"><i data-feather="list" class="icon-font-15 feather-icon"></i><span>Mis Mascotas</span></a>
-            <a href="/closesession"><i data-feather="log-out" class="icon-font-15 feather-icon"></i><span>Cerrar Sesión</span></a>
-        </div>
-    </div>
-</div>
 <div class="form-container-main">
 <form action="/savepet/create" method="post" enctype="multipart/form-data">
     <div class="container">
